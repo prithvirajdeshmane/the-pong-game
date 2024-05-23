@@ -14,10 +14,7 @@ class Paddle:
         self.paddle.shapesize(stretch_wid=5, stretch_len=1)
         self.paddle.color("white")
         self.paddle.penup()
-        self.paddle.speed("fastest")
-        self.paddle.hideturtle()
         self.paddle.goto(xcor, 0)
-        self.paddle.showturtle()
 
     def up(self):
         self.paddle.goto(self.paddle.xcor(), self.paddle.ycor() + MOVE_DISTANCE)
