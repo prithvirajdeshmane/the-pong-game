@@ -15,9 +15,15 @@ screen = Screen()
 screen.setup(width=WIDTH, height=HEIGHT)
 screen.bgcolor(BACKGROUND_COLOR)
 screen.title("Pong")
-
+# screen.tracer(0)
 
 # create right paddle
 right_paddle = Paddle(XCOR_RIGHT_PADDLE)
+
+# set screen to listen for up and down arrow keys
+screen.listen()
+screen.onkey(right_paddle.up, "Up")
+screen.onkey(right_paddle.down, "Down")
+
 
 screen.exitonclick()

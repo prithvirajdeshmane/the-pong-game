@@ -1,25 +1,26 @@
 from turtle import Turtle
 
-YCOORDS = [-40, -20, 0, 20, 40]
+# directional angles for movement
+UP = 90
+DOWN = 270
+MOVE_DISTANCE = 20
 
 
 class Paddle:
+    paddle = None
+
     def __init__(self, xcor):
-        self.paddle_segments = []
-        self.create_paddle(xcor)
-        self.show_paddle()
-        self.paddle_center = self.paddle_segments[2]
+        self.paddle = Turtle(shape="square")
+        self.paddle.shapesize(stretch_wid=5, stretch_len=1)
+        self.paddle.color("white")
+        self.paddle.penup()
+        self.paddle.speed("fastest")
+        self.paddle.hideturtle()
+        self.paddle.goto(xcor, 0)
+        self.paddle.showturtle()
 
-    def create_paddle(self, xcor):
-        for ycor in YCOORDS:
-            new_block = Turtle(shape="square")
-            new_block.hideturtle()
-            new_block.penup()
-            new_block.color("white")
-            new_block.speed("fastest")
-            new_block.goto(x=xcor, y=ycor)
-            self.paddle_segments.append(new_block)
+    def up(self):
+        self.paddle.goto(self.paddle.xcor(), self.paddle.ycor() + MOVE_DISTANCE)
 
-    def show_paddle(self):
-        for seg in self.paddle_segments:
-            seg.showturtle()
+    def down(self):
+        self.paddle.goto(self.paddle.xcor(), self.paddle.ycor() - MOVE_DISTANCE)
