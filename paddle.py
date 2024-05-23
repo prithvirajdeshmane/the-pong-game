@@ -1,23 +1,23 @@
 from turtle import Turtle
 
 # directional angles for movement
-UP = 90
-DOWN = 270
 MOVE_DISTANCE = 20
+BOUNDARY_LIMIT = 240
 
 
-class Paddle:
-    paddle = None
-
+class Paddle(Turtle):
     def __init__(self, xcor):
-        self.paddle = Turtle(shape="square")
-        self.paddle.shapesize(stretch_wid=5, stretch_len=1)
-        self.paddle.color("white")
-        self.paddle.penup()
-        self.paddle.goto(xcor, 0)
+        super().__init__()
+        self.shape("square")
+        self.shapesize(stretch_wid=5, stretch_len=1)
+        self.color("white")
+        self.penup()
+        self.goto(xcor, 0)
 
     def up(self):
-        self.paddle.goto(self.paddle.xcor(), self.paddle.ycor() + MOVE_DISTANCE)
+        if self.ycor() < BOUNDARY_LIMIT:
+            self.goto(self.xcor(), self.ycor() + MOVE_DISTANCE)
 
     def down(self):
-        self.paddle.goto(self.paddle.xcor(), self.paddle.ycor() - MOVE_DISTANCE)
+        if self.ycor() > (-1 * BOUNDARY_LIMIT):
+            self.goto(self.xcor(), self.ycor() - MOVE_DISTANCE)
