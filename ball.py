@@ -10,7 +10,9 @@ class Ball(Turtle):
         self.goto(0, 0)
         self.width = 20
 
-    def move(self, heading):
-        self.setheading(heading)
+    def move(self):
         self.speed("slow")
-        self.forward(1)
+        self.forward(5)
+
+    def bounce(self):
+        self.setheading(360 - self.heading())

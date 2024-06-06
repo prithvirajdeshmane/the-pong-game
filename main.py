@@ -27,6 +27,7 @@ left_paddle = Paddle(XCOR_LEFT_PADDLE)
 
 # create ball
 ball = Ball()
+ballWidth = ball.width
 
 # set random initial heading for the ball
 random_initial_heading = random.randint(-45, 45)
@@ -43,19 +44,25 @@ screen.onkey(left_paddle.down, "s")
 """ Game tracking variable"""
 is_game_on = True
 
+# ball_heading = random_initial_heading
+ball.setheading(280)
+
 while is_game_on:
     screen.update()
-    ball.move(random_initial_heading)
+    ball.move()
     time.sleep(0.02)
 
-    # detect collision with right paddle
+    # detect if ball has gone past paddle
 
 
-    # detect collision with top wall
+
+    # detect collision with top or bottom wall
+    if ball.ycor() >= ((HEIGHT / 2) - (ballWidth / 2)) or \
+            ball.ycor() <= -((HEIGHT / 2) - (ballWidth / 2)):
+        ball.bounce()
 
 
-    #detect collision with bottom wall
-
+    #detect collision with left or right paddle
 
 
 screen.exitonclick()
